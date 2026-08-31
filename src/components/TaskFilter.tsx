@@ -5,9 +5,11 @@ export interface TaskFilterProps {
     status?: TaskStatus;
     priority?: "low" | "medium" | "high";
   }) => void;
+
+  onSearchChange: (search: string) => void;
 }
 
-function TaskFilter({ onFilterChange }: TaskFilterProps) {
+function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
   function handleStatusFilter(event: React.ChangeEvent<HTMLSelectElement>) {
     const newSelectedStatus = event.target.value;
 
@@ -30,8 +32,13 @@ function TaskFilter({ onFilterChange }: TaskFilterProps) {
     });
   }
 
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    const searchValue = event.target.value;
+    onSearchChange(searchValue);
+  }
   return (
     <div>
+      <input type="text" placeholder="search anything..." />
       <h3>Filter Tasks</h3>
       <select onChange={handleStatusFilter}>
         <option value="all">All</option>

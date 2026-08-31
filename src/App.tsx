@@ -3,7 +3,6 @@ import { useState } from "react";
 import { tasks } from "./data/Data";
 import TaskList, { type TaskStatus } from "./components/TaskList";
 import TaskFilter from "./components/TaskFilter";
-
 function App() {
   const [taskList, setTaskList] = useState(tasks);
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
@@ -11,6 +10,7 @@ function App() {
     "low" | "medium" | "high"
   >();
 
+  const [search, setSearch] = useState("");
   function handleDeleteBtn(taskId: string) {
     const updatedTasks = taskList.filter((task) => task.id !== taskId);
 
@@ -39,7 +39,10 @@ function App() {
   }
 
   const filteredTasks = taskList.filter((task) => {
-    return !selectedStatus || task.status === selectedStatus;
+    return (
+      (!selectedStatus || task.status === selectedStatus) &&
+      (!selectedStatus || task.priority === selectedPriority)
+    );
   });
   return (
     <div>
