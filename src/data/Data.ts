@@ -1,0 +1,60 @@
+import type { Task } from "../components/TaskList";
+
+export const tasks: Task[] = [
+  {
+    id: "1",
+    title: "React Lab1",
+    description: "React project to practice react lessons",
+    status: "pending",
+    priority: "low",
+    dueDate: "8/31/2026",
+  },
+  {
+    id: "2",
+    title: "TypeScript + React",
+    description: "Lesson to build react project",
+    status: "in-progress",
+    priority: "medium",
+    dueDate: "8/30/2026",
+  },
+  {
+    id: "3",
+    title: "Job Applications",
+    description: "Applying for jobs to get employed #Anti-Joblessness",
+    status: "completed",
+    priority: "high",
+    dueDate: "8/29/2026",
+  },
+  {
+    id: "4",
+    title: "Interview",
+    description: "Interviewing for job applications",
+    status: "pending",
+    priority: "low",
+    dueDate: "8/31/2026",
+  },
+  {
+    id: "5",
+    title: "React Lab 1",
+    description: "Build a React project to practice React concepts",
+    status: "pending",
+    priority: "low",
+    dueDate: "8/31/2026",
+  },
+  {
+    id: "6",
+    title: "TypeScript + React",
+    description: "Practice using TypeScript with React components",
+    status: "in-progress",
+    priority: "medium",
+    dueDate: "8/30/2026",
+  },
+  {
+    id: "7",
+    title: "Portfolio Project",
+    description: "Add a new React project to my portfolio",
+    status: "completed",
+    priority: "high",
+    dueDate: "9/5/2026",
+  },
+];
