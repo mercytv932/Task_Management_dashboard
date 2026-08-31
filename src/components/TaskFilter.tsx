@@ -28,6 +28,13 @@ function TaskFilter({ onFilterChange }: TaskFilterProps) {
         <option value="in-progress">In-Progress</option>
         <option value="completed">Completed</option>
       </select>
+
+      <select>
+        <option value="all">All</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
     </div>
   );
 }
