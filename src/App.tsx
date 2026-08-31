@@ -11,6 +11,10 @@ function App() {
   >();
 
   const [search, setSearch] = useState("");
+  function handleSearchChange(searchValue: string) {
+    setSearch(searchValue);
+  }
+
   function handleDeleteBtn(taskId: string) {
     const updatedTasks = taskList.filter((task) => task.id !== taskId);
 
@@ -44,6 +48,7 @@ function App() {
       (!selectedStatus || task.priority === selectedPriority)
     );
   });
+
   return (
     <div>
       <TaskList
@@ -51,7 +56,10 @@ function App() {
         onDelete={handleDeleteBtn}
         onStatusChange={handleStatusChange}
       />
-      <TaskFilter onFilterChange={handleStatusFilters} />
+      <TaskFilter
+        onFilterChange={handleStatusFilters}
+        onSearchChange={handleSearchChange}
+      />
     </div>
   );
 }
