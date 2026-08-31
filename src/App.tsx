@@ -45,7 +45,8 @@ function App() {
   const filteredTasks = taskList.filter((task) => {
     return (
       (!selectedStatus || task.status === selectedStatus) &&
-      (!selectedStatus || task.priority === selectedPriority)
+      (!selectedPriority || task.priority === selectedPriority) &&
+      task.title.toLowerCase().includes(search.toLowerCase())
     );
   });
 

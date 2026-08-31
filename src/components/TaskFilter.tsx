@@ -38,7 +38,7 @@ function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
   }
   return (
     <div>
-      <input type="text" placeholder="search anything..." />
+      <input type="text" placeholder="search anything..."  onChange={handleSearch}/>
       <h3>Filter Tasks</h3>
       <select onChange={handleStatusFilter}>
         <option value="all">All</option>
