@@ -19,6 +19,17 @@ function TaskFilter({ onFilterChange }: TaskFilterProps) {
     });
   }
 
+  function handlePriorityFilter(event: React.ChangeEvent<HTMLSelectElement>) {
+    const priorityFilter = event.target.value;
+
+    onFilterChange({
+      priority:
+        priorityFilter === "all"
+          ? undefined
+          : (priorityFilter as "low" | "medium" | "high"),
+    });
+  }
+
   return (
     <div>
       <h3>Filter Tasks</h3>
@@ -29,7 +40,7 @@ function TaskFilter({ onFilterChange }: TaskFilterProps) {
         <option value="completed">Completed</option>
       </select>
 
-      <select>
+      <select onChange={handlePriorityFilter}>
         <option value="all">All</option>
         <option value="low">Low</option>
         <option value="medium">Medium</option>
