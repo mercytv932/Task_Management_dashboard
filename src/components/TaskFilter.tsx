@@ -74,7 +74,6 @@ function TaskFilter({
         <option value="default">Sort By</option>
         <option value="title">Title</option>
         <option value="priority">Priority</option>
-        <option value="dueDate">Due Date</option>
       </select>
     </div>
   );

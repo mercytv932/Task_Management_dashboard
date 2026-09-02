@@ -55,10 +55,21 @@ function App() {
     );
   });
 
+  const sortedTasks = [...filteredTasks];
+  const priorityOrder = { high: 1, medium: 2, low: 3 };
+
+  if (sortBy === "title") {
+    sortedTasks.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortBy === "priority") {
+    sortedTasks.sort(
+      (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
+    );
+  }
+
   return (
     <div>
       <TaskList
-        tasks={filteredTasks}
+        tasks={sortedTasks}
         onDelete={handleDeleteBtn}
         onStatusChange={handleStatusChange}
       />
