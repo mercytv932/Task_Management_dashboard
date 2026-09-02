@@ -43,6 +43,10 @@ function App() {
     }
   }
 
+  function hnadleSortChange(sortValue: string) {
+    setSortBy(sortValue);
+  }
+
   const filteredTasks = taskList.filter((task) => {
     return (
       (!selectedStatus || task.status === selectedStatus) &&
@@ -61,6 +65,7 @@ function App() {
       <TaskFilter
         onFilterChange={handleStatusFilters}
         onSearchChange={handleSearchChange}
+        onSortChange={hnadleSortChange}
       />
     </div>
   );

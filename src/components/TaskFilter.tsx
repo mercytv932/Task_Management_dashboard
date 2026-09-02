@@ -7,9 +7,15 @@ export interface TaskFilterProps {
   }) => void;
 
   onSearchChange: (search: string) => void;
+
+  onSortChange: (sortValue: string) => void;
 }
 
-function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
+function TaskFilter({
+  onFilterChange,
+  onSearchChange,
+  onSortChange,
+}: TaskFilterProps) {
   function handleStatusFilter(event: React.ChangeEvent<HTMLSelectElement>) {
     const newSelectedStatus = event.target.value;
 
@@ -36,6 +42,12 @@ function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
     const searchValue = event.target.value;
     onSearchChange(searchValue);
   }
+
+  function handleSorting(event: React.ChangeEvent<HTMLSelectElement>) {
+    const sortedValue = event.target.value;
+
+    onSortChange(sortedValue);
+  }
   return (
     <div>
       <input
@@ -58,7 +70,7 @@ function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
         <option value="high">High</option>
       </select>
 
-      <select>
+      <select onChange={handleSorting}>
         <option value="default">Sort By</option>
         <option value="title">Title</option>
         <option value="priority">Priority</option>
