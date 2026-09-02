@@ -38,7 +38,11 @@ function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
   }
   return (
     <div>
-      <input type="text" placeholder="search anything..."  onChange={handleSearch}/>
+      <input
+        type="text"
+        placeholder="search anything..."
+        onChange={handleSearch}
+      />
       <h3>Filter Tasks</h3>
       <select onChange={handleStatusFilter}>
         <option value="all">All</option>
@@ -52,6 +56,13 @@ function TaskFilter({ onFilterChange, onSearchChange }: TaskFilterProps) {
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
+      </select>
+
+      <select>
+        <option value="default">Sort By</option>
+        <option value="title">Title</option>
+        <option value="priority">Priority</option>
+        <option value="dueDate">Due Date</option>
       </select>
     </div>
   );

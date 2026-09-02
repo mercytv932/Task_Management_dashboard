@@ -9,8 +9,9 @@ function App() {
   const [selectedPriority, setSelectedPriority] = useState<
     "low" | "medium" | "high"
   >();
-
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("default");
+
   function handleSearchChange(searchValue: string) {
     setSearch(searchValue);
   }
