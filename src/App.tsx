@@ -6,6 +6,7 @@ import TaskList from "./components/TaskList";
 import type { Task, TaskStatus } from "./types";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
+import Dashboard from "./components/Dashboard";
 function App() {
   const [taskList, setTaskList] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem("tasks");
@@ -113,31 +114,9 @@ function App() {
   );
 
   const sortedTasks = sortTasks(filteredTasks, sortBy);
-
-  const totalTasks = taskList.length;
-
-  const pendingTasks = taskList.filter(
-    (task) => task.status === "pending",
-  ).length;
-
-  const inProgressTasks = taskList.filter(
-    (task) => task.status === "in-progress",
-  ).length;
-
-  const completedTasks = taskList.filter(
-    (task) => task.status === "completed",
-  ).length;
-
   return (
     <div>
-      <div>
-        <h2>Dashboard</h2>
-        <p>Total Tasks: {totalTasks}</p>
-        <p>Pending: {pendingTasks}</p>
-        <p>In Progress: {inProgressTasks}</p>
-        <p>Completed: {completedTasks}</p>
-      </div>
-
+      <Dashboard tasks={taskList} />
       <div>
         <p>Active Filters:</p>
         {selectedStatus && <span>Status: {selectedStatus}</span>}
