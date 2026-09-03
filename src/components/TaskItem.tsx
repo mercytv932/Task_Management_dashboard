@@ -28,7 +28,7 @@ function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
       <h4>Description: {task.description}</h4>
       <h5>Status: {task.status}</h5>
       <h5>Priority: {task.priority}</h5>
-      <p>Due: {formatDate(task.status)}</p>
+      <p>Due: {formatDate(task.dueDate)}</p>
       <select value={task.status} onChange={handleStatus}>
         <option value="pending">Pending</option>
         <option value="in-progress">In-Progress</option>

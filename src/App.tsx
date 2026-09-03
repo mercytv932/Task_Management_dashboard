@@ -91,6 +91,21 @@ function App() {
     URL.revokeObjectURL(url);
   }
 
+  function handleImportTasks(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const importedTasks = JSON.parse(reader.result as string);
+      setTaskList(importedTasks);
+    };
+    reader.readAsText(file);
+  }
+
   const filteredTasks = filterTasks(
     taskList,
     selectedStatus,
@@ -148,6 +163,7 @@ function App() {
         onUpdateTask={handleUpdateTask}
       />
 
+      <input type="file" accept=".json" onChange={handleImportTasks} />
       <div className="fileBtns">
         <button onClick={handleExportTasks}>Export</button>
       </div>

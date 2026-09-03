@@ -4,7 +4,7 @@ import { validateTask } from "../utils/taskUtils";
 interface TaskFormProps {
   onAddTask: (newTask: Task) => void;
   editingTask: Task | null;
-  onUpdateTask: (UpdatedTask: Task) => void;
+  onUpdateTask: (updatedTask: Task) => void;
 }
 
 function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
