@@ -14,3 +14,21 @@ export function filterTasks(
     );
   });
 }
+
+export function sortTasks(tasks: Task[], sortBy: string) {
+  const sortedTasks = [...tasks];
+
+  const priorityOrder: Record<Task["priority"], number> = {
+    high: 1,
+    medium: 2,
+    low: 3,
+  };
+  if (sortBy === "title") {
+    sortedTasks.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortBy === "priority") {
+    sortedTasks.sort(
+      (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
+    );
+  }
+  return sortedTasks;
+}
