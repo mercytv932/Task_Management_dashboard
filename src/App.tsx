@@ -12,6 +12,7 @@ function App() {
   >();
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   function handleSearchChange(searchValue: string) {
     setSearch(searchValue);
@@ -52,6 +53,10 @@ function App() {
     setTaskList([...taskList, newTask]);
   }
 
+  function handleEditingTask(task: Task) {
+    setEditingTask(task);
+  }
+
   const filteredTasks = taskList.filter((task) => {
     return (
       (!selectedStatus || task.status === selectedStatus) &&
@@ -77,6 +82,7 @@ function App() {
         tasks={sortedTasks}
         onDelete={handleDeleteBtn}
         onStatusChange={handleStatusChange}
+        onEdit={handleEditingTask}
       />
       <TaskFilter
         onFilterChange={handleStatusFilters}
@@ -84,7 +90,7 @@ function App() {
         onSortChange={handleSortChange}
       />
 
-      <TaskForm onAddTask={handleAddTask} />
+      <TaskForm onAddTask={handleAddTask} editingTask={editingTask} />
     </div>
   );
 }

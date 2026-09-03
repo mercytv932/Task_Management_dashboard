@@ -5,9 +5,10 @@ export interface TaskItemProps {
   task: Task;
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
+  onEdit: (task: Task) => void;
 }
 
-function TaskItem({ task, onStatusChange, onDelete }: TaskItemProps) {
+function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
   function handleDelete() {
     onDelete(task.id);
   }
@@ -16,6 +17,10 @@ function TaskItem({ task, onStatusChange, onDelete }: TaskItemProps) {
     const newStatus = event.target.value as TaskStatus;
 
     onStatusChange(task.id, newStatus);
+  }
+
+  function handleEdit() {
+    onEdit(task);
   }
   return (
     <div>
@@ -29,6 +34,7 @@ function TaskItem({ task, onStatusChange, onDelete }: TaskItemProps) {
         <option value="in-progress">In-Progress</option>
         <option value="completed">Completed</option>
       </select>
+      <button onClick={handleEdit}>Edit</button>
       <button onClick={handleDelete}>Delete</button>
     </div>
   );

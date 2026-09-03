@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Task, TaskStatus } from "./TaskList";
 
 interface TaskFormProps {
   onAddTask: (newTask: Task) => void;
+  editingTask: Task | null;
 }
 
-function TaskForm({ onAddTask }: TaskFormProps) {
+function TaskForm({ onAddTask, editingTask }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<TaskStatus>("pending");
   const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
   const [dueDate, setDueDate] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (editingTask) {
+      setTitle(editingTask.title);
+      setDescription(editingTask.description);
+      setStatus(editingTask.status);
+      setPriority(editingTask.priority);
+      setDueDate(editingTask.dueDate);
+    }
+  }, [editingTask]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
