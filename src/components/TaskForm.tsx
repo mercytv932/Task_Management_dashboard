@@ -1,14 +1,21 @@
 import { useState } from "react";
+import type { Task, TaskStatus } from "./TaskList";
 
-function TaskForm() {
+interface TaskFormProps {
+  onAddTask: (newTask: Task) => void;
+}
+
+function TaskForm({ onAddTask }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("pending");
-  const [priority, setPriority] = useState("low");
+  const [status, setStatus] = useState<TaskStatus>("pending");
+  const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
   const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    addTask();
   };
 
   function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -24,18 +31,30 @@ function TaskForm() {
   }
 
   function handleStatusChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedStatus = event.target.value;
+    const selectedStatus = event.target.value as TaskStatus;
     setStatus(selectedStatus);
   }
 
   function handlePriorityChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedPriority = event.target.value;
+    const selectedPriority = event.target.value as "low" | "medium" | "high";
     setPriority(selectedPriority);
   }
 
   function handleDueDate(event: React.ChangeEvent<HTMLInputElement>) {
     const selectedDate = event.target.value;
     setDueDate(selectedDate);
+  }
+
+  function addTask() {
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title: title,
+      description: description,
+      status: status,
+      priority: priority,
+      dueDate: dueDate,
+    };
+    onAddTask(newTask);
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -68,7 +87,9 @@ function TaskForm() {
           <input value={dueDate} onChange={handleDueDate} type="date" />
         </div>
       </div>
-      <button type="submit">Add Task</button>
+      <button type="submit">
+        Add Task
+      </button>
     </form>
   );
 }
