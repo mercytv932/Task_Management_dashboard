@@ -18,13 +18,29 @@ function Dashboard({ tasks }: DashboardProps) {
   ).length;
 
   return (
-    <div>
-      <div>
-        <h2>Dashboard</h2>
-        <p>Total Tasks: {totalTasks}</p>
-        <p>Pending: {pendingTasks}</p>
-        <p>In Progress: {inProgressTasks}</p>
-        <p>Completed: {completedTasks}</p>
+    <div className="dashboard">
+      <h2 className="dashboard-title">Dashboard</h2>
+
+      <div className="dashboard-stats">
+        <div className="stat-card">
+          <p>Total Tasks</p>
+          <h3>{totalTasks}</h3>
+        </div>
+
+        <div className="stat-card">
+          <p>Pending</p>
+          <h3>{pendingTasks}</h3>
+        </div>
+
+        <div className="stat-card">
+          <p>In Progress</p>
+          <h3>{inProgressTasks}</h3>
+        </div>
+
+        <div className="stat-card">
+          <p>Completed</p>
+          <h3>{completedTasks}</h3>
+        </div>
       </div>
     </div>
   );
