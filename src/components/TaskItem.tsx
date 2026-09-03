@@ -1,5 +1,5 @@
 import type { Task, TaskStatus } from "../types";
-
+import { formatDate } from "../utils/taskUtils";
 // types/index.ts
 export interface TaskItemProps {
   task: Task;
@@ -28,7 +28,7 @@ function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
       <h4>Description: {task.description}</h4>
       <h5>Status: {task.status}</h5>
       <h5>Priority: {task.priority}</h5>
-      <p>Due: {task.dueDate}</p>
+      <p>Due: {formatDate(task.status)}</p>
       <select value={task.status} onChange={handleStatus}>
         <option value="pending">Pending</option>
         <option value="in-progress">In-Progress</option>
