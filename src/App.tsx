@@ -78,8 +78,17 @@ function App() {
     setEditingTask(null);
   }
 
-  handleExportTasks() {
-    
+  function handleExportTasks() {
+    const data = JSON.stringify(taskList, null, 2);
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "tasks.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
   }
 
   const filteredTasks = filterTasks(
@@ -138,6 +147,10 @@ function App() {
         editingTask={editingTask}
         onUpdateTask={handleUpdateTask}
       />
+
+      <div className="fileBtns">
+        <button onClick={handleExportTasks}>Export</button>
+      </div>
     </div>
   );
 }
