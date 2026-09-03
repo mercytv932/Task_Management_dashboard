@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Task, TaskStatus } from "./TaskList";
-
+import type { Task, TaskStatus } from "../types";
 interface TaskFormProps {
   onAddTask: (newTask: Task) => void;
   editingTask: Task | null;

@@ -1,4 +1,4 @@
-import type { Task, TaskStatus } from "./TaskList";
+import type { Task, TaskStatus } from "../types";
 
 // types/index.ts
 export interface TaskItemProps {

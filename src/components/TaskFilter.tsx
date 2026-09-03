@@ -1,4 +1,4 @@
-import type { TaskStatus } from "./TaskList";
+import type { TaskStatus } from "../types";
 // types/index.ts
 export interface TaskFilterProps {
   onFilterChange: (filters: {
