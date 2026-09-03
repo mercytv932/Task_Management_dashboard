@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
 }
 
-.App {
+.app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
@@ -106,6 +106,76 @@ body {
 
 @media (max-width: 600px) {
   .filter-controls {
+    flex-direction: column;
+  }
+}
+
+/* Task List */
+
+.task-list {
+  margin-bottom: 30px;
+}
+
+.task-list-title {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.task-list-container {
+  display: grid;
+  gap: 16px;
+}
+
+.task-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.task-title {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.task-description {
+  color: #667085;
+  margin-bottom: 16px;
+}
+
+.task-details {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.status-select,
+.edit-button,
+.delete-button {
+  padding: 9px 12px;
+  border-radius: 8px;
+}
+
+.status-select {
+  border: 1px solid #d0d5dd;
+  background: white;
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .task-actions {
     flex-direction: column;
   }
 }
