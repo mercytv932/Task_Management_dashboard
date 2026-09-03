@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { filterTasks } from "./utils/taskUtils";
 import { tasks } from "./data/Data";
 import TaskList from "./components/TaskList";
 import type { Task, TaskStatus } from "./types";
@@ -78,13 +78,12 @@ function App() {
     setEditingTask(null);
   }
 
-  const filteredTasks = taskList.filter((task) => {
-    return (
-      (!selectedStatus || task.status === selectedStatus) &&
-      (!selectedPriority || task.priority === selectedPriority) &&
-      task.title.toLowerCase().includes(search.toLowerCase())
-    );
-  });
+  const filteredTasks = filterTasks(
+    taskList,
+    selectedStatus,
+    selectedPriority,
+    search,
+  );
 
   const sortedTasks = [...filteredTasks];
   const priorityOrder = { high: 1, medium: 2, low: 3 };
