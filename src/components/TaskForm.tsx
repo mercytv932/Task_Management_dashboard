@@ -11,11 +11,29 @@ function TaskForm({ onAddTask }: TaskFormProps) {
   const [status, setStatus] = useState<TaskStatus>("pending");
   const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
   const [dueDate, setDueDate] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (title === "") {
+      setError("title is empty!");
+      return;
+    } else if (description === "") {
+      setError("description is empty!");
+      return;
+    } else if (dueDate === "") {
+      setError("due date is required!");
+      return;
+    }
+    setError("");
     addTask();
+
+    setTitle("");
+    setDescription("");
+    setDueDate("");
+    setStatus("pending");
+    setPriority("low");
   };
 
   function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -87,9 +105,8 @@ function TaskForm({ onAddTask }: TaskFormProps) {
           <input value={dueDate} onChange={handleDueDate} type="date" />
         </div>
       </div>
-      <button type="submit">
-        Add Task
-      </button>
+      {error && <p>{error}</p>}
+      <button type="submit">Add Task</button>
     </form>
   );
 }
