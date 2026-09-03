@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import { tasks } from "./data/Data";
-import TaskList, { type TaskStatus } from "./components/TaskList";
+import TaskList, { type Task, type TaskStatus } from "./components/TaskList";
 import TaskFilter from "./components/TaskFilter";
+import TaskForm from "./components/TaskForm";
 function App() {
   const [taskList, setTaskList] = useState(tasks);
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
@@ -43,8 +44,12 @@ function App() {
     }
   }
 
-  function hnadleSortChange(sortValue: string) {
+  function handleSortChange(sortValue: string) {
     setSortBy(sortValue);
+  }
+
+  function handleAddTask(newTask: Task) {
+    setTaskList([...taskList, newTask]);
   }
 
   const filteredTasks = taskList.filter((task) => {
@@ -76,8 +81,10 @@ function App() {
       <TaskFilter
         onFilterChange={handleStatusFilters}
         onSearchChange={handleSearchChange}
-        onSortChange={hnadleSortChange}
+        onSortChange={handleSortChange}
       />
+
+      <TaskForm onAddTask={handleAddTask} />
     </div>
   );
 }
