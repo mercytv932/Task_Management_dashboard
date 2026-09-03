@@ -81,47 +81,82 @@ function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
   function addTask() {
     const newTask: Task = {
       id: crypto.randomUUID(),
-      title: title,
-      description: description,
-      status: status,
-      priority: priority,
-      dueDate: dueDate,
+      title,
+      description,
+      status,
+      priority,
+      dueDate,
     };
     onAddTask(newTask);
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="task-form" onSubmit={handleSubmit}>
+      <h3 className="form-title">
+        {editingTask ? "Edit Task" : "Add New Task"}
+      </h3>
+
+      <div className="form-group">
         <label>Title</label>
-        <input value={title} onChange={handleTitleChange} type="text" />
+        <input
+          className="form-input"
+          value={title}
+          onChange={handleTitleChange}
+          type="text"
+        />
+      </div>
+
+      <div className="form-group">
         <label>Description</label>
         <textarea
+          className="form-input"
           value={description}
           onChange={handleDescriptionChange}
         ></textarea>
       </div>
-      <div>
-        <label>Status</label>
-        <select value={status} onChange={handleStatusChange}>
-          <option value="pending">Pending</option>
-          <option value="in-progress">In-Progress</option>
-          <option value="completed">Completed</option>
-        </select>
 
-        <label>Priority</label>
-        <select value={priority} onChange={handlePriorityChange}>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
+      <div className="form-row">
+        <div className="form-group">
+          <label>Status</label>
+          <select
+            className="form-input"
+            value={status}
+            onChange={handleStatusChange}
+          >
+            <option value="pending">Pending</option>
+            <option value="in-progress">In-Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
 
-        <div>
+        <div className="form-group">
+          <label>Priority</label>
+          <select
+            className="form-input"
+            value={priority}
+            onChange={handlePriorityChange}
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div className="form-group">
           <label>Due Date</label>
-          <input value={dueDate} onChange={handleDueDate} type="date" />
+          <input
+            className="form-input"
+            value={dueDate}
+            onChange={handleDueDate}
+            type="date"
+          />
         </div>
       </div>
-      {error && <p>{error}</p>}
-      <button type="submit">{editingTask ? "Save" : "Add Task"}</button>
+
+      {error && <p className="form-error">{error}</p>}
+
+      <button className="form-button" type="submit">
+        {editingTask ? "Save" : "Add Task"}
+      </button>
     </form>
   );
 }

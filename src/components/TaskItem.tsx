@@ -1,6 +1,5 @@
 import type { TaskItemProps, TaskStatus } from "../types";
 import { formatDate } from "../utils/taskUtils";
-// types/index.ts
 
 function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
   function handleDelete() {
@@ -17,19 +16,37 @@ function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
     onEdit(task);
   }
   return (
-    <div>
-      <h3>title: {task.title}</h3>
-      <h4>Description: {task.description}</h4>
-      <h5>Status: {task.status}</h5>
-      <h5>Priority: {task.priority}</h5>
-      <p>Due: {formatDate(task.dueDate)}</p>
-      <select value={task.status} onChange={handleStatus}>
-        <option value="pending">Pending</option>
-        <option value="in-progress">In-Progress</option>
-        <option value="completed">Completed</option>
-      </select>
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+    <div className="task-card">
+      <div className="task-info">
+        <h3 className="task-title">{task.title}</h3>
+        <p className="task-description">{task.description}</p>
+
+        <div className="task-details">
+          <span className="task-status">Status: {task.status}</span>
+          <span className="task-priority">Priority: {task.priority}</span>
+          <span className="task-date">Due: {formatDate(task.dueDate)}</span>
+        </div>
+      </div>
+
+      <div className="task-actions">
+        <select
+          className="status-select"
+          value={task.status}
+          onChange={handleStatus}
+        >
+          <option value="pending">Pending</option>
+          <option value="in-progress">In-Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <button className="edit-button" onClick={handleEdit}>
+          Edit
+        </button>
+
+        <button className="delete-button" onClick={handleDelete}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

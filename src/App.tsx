@@ -117,24 +117,30 @@ function App() {
 
   const sortedTasks = sortTasks(filteredTasks, sortBy);
   return (
-    <div className="App">
+    <div className="app">
       <Dashboard tasks={taskList} />
-      <div>
+
+      <div className="active-filters">
         <p>Active Filters:</p>
-        {selectedStatus && <span>Status: {selectedStatus}</span>}
-        {selectedPriority && <span>Priority: {selectedPriority}</span>}
+        {selectedStatus && (
+          <span className="filter-badge">Status: {selectedStatus}</span>
+        )}
+        {selectedPriority && (
+          <span className="filter-badge">Priority: {selectedPriority}</span>
+        )}
       </div>
+
+      <TaskFilter
+        onFilterChange={handleStatusFilters}
+        onSearchChange={handleSearchChange}
+        onSortChange={handleSortChange}
+      />
 
       <TaskList
         tasks={sortedTasks}
         onDelete={handleDeleteBtn}
         onStatusChange={handleStatusChange}
         onEdit={handleEditingTask}
-      />
-      <TaskFilter
-        onFilterChange={handleStatusFilters}
-        onSearchChange={handleSearchChange}
-        onSortChange={handleSortChange}
       />
 
       <TaskForm
@@ -143,9 +149,17 @@ function App() {
         onUpdateTask={handleUpdateTask}
       />
 
-      <input type="file" accept=".json" onChange={handleImportTasks} />
-      <div className="fileBtns">
-        <button onClick={handleExportTasks}>Export</button>
+      <div className="file-actions">
+        <input
+          className="import-input"
+          type="file"
+          accept=".json"
+          onChange={handleImportTasks}
+        />
+
+        <button className="export-button" onClick={handleExportTasks}>
+          Export
+        </button>
       </div>
     </div>
   );
