@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { filterTasks } from "./utils/taskUtils";
+import { filterTasks, sortTasks } from "./utils/taskUtils";
 import { tasks } from "./data/Data";
 import TaskList from "./components/TaskList";
 import type { Task, TaskStatus } from "./types";
@@ -85,16 +85,7 @@ function App() {
     search,
   );
 
-  const sortedTasks = [...filteredTasks];
-  const priorityOrder = { high: 1, medium: 2, low: 3 };
-
-  if (sortBy === "title") {
-    sortedTasks.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortBy === "priority") {
-    sortedTasks.sort(
-      (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority],
-    );
-  }
+  const sortedTasks = sortTasks(filteredTasks, sortBy);
 
   const totalTasks = taskList.length;
 
