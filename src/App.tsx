@@ -78,6 +78,10 @@ function App() {
     setEditingTask(null);
   }
 
+  handleExportTasks() {
+    
+  }
+
   const filteredTasks = filterTasks(
     taskList,
     selectedStatus,
@@ -109,6 +113,12 @@ function App() {
         <p>Pending: {pendingTasks}</p>
         <p>In Progress: {inProgressTasks}</p>
         <p>Completed: {completedTasks}</p>
+      </div>
+
+      <div>
+        <p>Active Filters:</p>
+        {selectedStatus && <span>Status: {selectedStatus}</span>}
+        {selectedPriority && <span>Priority: {selectedPriority}</span>}
       </div>
 
       <TaskList
