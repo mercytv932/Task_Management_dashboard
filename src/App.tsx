@@ -96,8 +96,30 @@ function App() {
     );
   }
 
+  const totalTasks = taskList.length;
+
+  const pendingTasks = taskList.filter(
+    (task) => task.status === "pending",
+  ).length;
+
+  const inProgressTasks = taskList.filter(
+    (task) => task.status === "in-progress",
+  ).length;
+
+  const completedTasks = taskList.filter(
+    (task) => task.status === "completed",
+  ).length;
+
   return (
     <div>
+      <div>
+        <h2>Dashboard</h2>
+        <p>Total Tasks: {totalTasks}</p>
+        <p>Pending: {pendingTasks}</p>
+        <p>In Progress: {inProgressTasks}</p>
+        <p>Completed: {completedTasks}</p>
+      </div>
+
       <TaskList
         tasks={sortedTasks}
         onDelete={handleDeleteBtn}
