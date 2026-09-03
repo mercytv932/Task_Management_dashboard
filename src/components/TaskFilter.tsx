@@ -35,32 +35,37 @@ function TaskFilter({
     onSortChange(sortedValue);
   }
   return (
-    <div>
+    <div className="task-filter">
       <input
+        className="search-input"
         type="text"
-        placeholder="search anything..."
+        placeholder="Search tasks..."
         onChange={handleSearch}
       />
-      <h3>Filter Tasks</h3>
-      <select onChange={handleStatusFilter}>
-        <option value="all">All</option>
-        <option value="pending">Pending</option>
-        <option value="in-progress">In-Progress</option>
-        <option value="completed">Completed</option>
-      </select>
 
-      <select onChange={handlePriorityFilter}>
-        <option value="all">All</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
+      <h3 className="filter-title">Filter Tasks</h3>
 
-      <select onChange={handleSorting}>
-        <option value="default">Sort By</option>
-        <option value="title">Title</option>
-        <option value="priority">Priority</option>
-      </select>
+      <div className="filter-controls">
+        <select className="filter-select" onChange={handleStatusFilter}>
+          <option value="all">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In-Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <select className="filter-select" onChange={handlePriorityFilter}>
+          <option value="all">All Priorities</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <select className="filter-select" onChange={handleSorting}>
+          <option value="default">Sort By</option>
+          <option value="title">Title</option>
+          <option value="priority">Priority</option>
+        </select>
+      </div>
     </div>
   );
 }
