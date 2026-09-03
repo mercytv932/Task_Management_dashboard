@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { tasks } from "./data/Data";
 import TaskList, { type Task, type TaskStatus } from "./components/TaskList";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
 function App() {
-  const [taskList, setTaskList] = useState(tasks);
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    }
+
+    return tasks;
+  });
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
   const [selectedPriority, setSelectedPriority] = useState<
     "low" | "medium" | "high"
@@ -13,6 +21,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+  }, [taskList]);
 
   function handleSearchChange(searchValue: string) {
     setSearch(searchValue);
