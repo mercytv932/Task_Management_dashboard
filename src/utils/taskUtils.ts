@@ -1,9 +1,9 @@
-import type { Task, TaskStatus } from "../types";
+import type { Task, TaskStatus, TaskPriority } from "../types";
 
 export function filterTasks(
   tasks: Task[],
   status?: TaskStatus,
-  priority?: "low" | "medium" | "high",
+  priority?: TaskPriority,
   search: string = "",
 ) {
   return tasks.filter((task) => {

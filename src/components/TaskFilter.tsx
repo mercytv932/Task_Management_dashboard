@@ -1,16 +1,4 @@
-import type { TaskStatus } from "../types";
-// types/index.ts
-export interface TaskFilterProps {
-  onFilterChange: (filters: {
-    status?: TaskStatus;
-    priority?: "low" | "medium" | "high";
-  }) => void;
-
-  onSearchChange: (search: string) => void;
-
-  onSortChange: (sortValue: string) => void;
-}
-
+import type { TaskFilterProps, TaskStatus, TaskPriority } from "../types";
 function TaskFilter({
   onFilterChange,
   onSearchChange,
@@ -32,9 +20,7 @@ function TaskFilter({
 
     onFilterChange({
       priority:
-        priorityFilter === "all"
-          ? undefined
-          : (priorityFilter as "low" | "medium" | "high"),
+        priorityFilter === "all" ? undefined : (priorityFilter as TaskPriority),
     });
   }
 

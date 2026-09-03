@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
-import type { Task, TaskStatus } from "../types";
+import type { Task, TaskFormProps, TaskStatus, TaskPriority } from "../types";
 import { validateTask } from "../utils/taskUtils";
-interface TaskFormProps {
-  onAddTask: (newTask: Task) => void;
-  editingTask: Task | null;
-  onUpdateTask: (updatedTask: Task) => void;
-}
 
 function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<TaskStatus>("pending");
-  const [priority, setPriority] = useState<"low" | "medium" | "high">("low");
+  const [priority, setPriority] = useState<TaskPriority>("low");
   const [dueDate, setDueDate] = useState("");
   const [error, setError] = useState("");
 
@@ -74,7 +69,7 @@ function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
   }
 
   function handlePriorityChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedPriority = event.target.value as "low" | "medium" | "high";
+    const selectedPriority = event.target.value as TaskPriority;
     setPriority(selectedPriority);
   }
 

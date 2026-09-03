@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { filterTasks, sortTasks } from "./utils/taskUtils";
 import { tasks } from "./data/Data";
+import type { TaskPriority } from "./types";
 import TaskList from "./components/TaskList";
 import type { Task, TaskStatus } from "./types";
 import TaskFilter from "./components/TaskFilter";
@@ -16,9 +17,7 @@ function App() {
     return tasks;
   });
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
-  const [selectedPriority, setSelectedPriority] = useState<
-    "low" | "medium" | "high"
-  >();
+  const [selectedPriority, setSelectedPriority] = useState<TaskPriority>();
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -46,7 +45,7 @@ function App() {
 
   function handleStatusFilters(filter: {
     status?: TaskStatus;
-    priority?: "low" | "medium" | "high";
+    priority?: TaskPriority;
   }) {
     if (filter.status !== undefined || "status" in filter) {
       setSelectedStatus(filter.status);

@@ -1,12 +1,6 @@
-import type { Task, TaskStatus } from "../types";
+import type { TaskItemProps, TaskStatus } from "../types";
 import { formatDate } from "../utils/taskUtils";
 // types/index.ts
-export interface TaskItemProps {
-  task: Task;
-  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
-  onDelete: (taskId: string) => void;
-  onEdit: (task: Task) => void;
-}
 
 function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
   function handleDelete() {
