@@ -4,9 +4,10 @@ import type { Task, TaskStatus } from "./TaskList";
 interface TaskFormProps {
   onAddTask: (newTask: Task) => void;
   editingTask: Task | null;
+  onUpdateTask: (UpdatedTask: Task) => void;
 }
 
-function TaskForm({ onAddTask, editingTask }: TaskFormProps) {
+function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<TaskStatus>("pending");
@@ -38,7 +39,19 @@ function TaskForm({ onAddTask, editingTask }: TaskFormProps) {
       return;
     }
     setError("");
-    addTask();
+    if (editingTask) {
+      const updatedTask: Task = {
+        id: editingTask.id,
+        title,
+        description,
+        status,
+        priority,
+        dueDate,
+      };
+      onUpdateTask(updatedTask);
+    } else {
+      addTask();
+    }
 
     setTitle("");
     setDescription("");
@@ -117,7 +130,7 @@ function TaskForm({ onAddTask, editingTask }: TaskFormProps) {
         </div>
       </div>
       {error && <p>{error}</p>}
-      <button type="submit">Add Task</button>
+      <button type="submit">{editingTask ? "Save" : "Add Task"}</button>
     </form>
   );
 }

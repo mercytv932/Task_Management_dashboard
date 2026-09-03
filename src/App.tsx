@@ -57,6 +57,15 @@ function App() {
     setEditingTask(task);
   }
 
+  function handleUpdateTask(updatedTask: Task) {
+    const updatedTasks = taskList.map((task) =>
+      task.id === updatedTask.id ? updatedTask : task,
+    );
+
+    setTaskList(updatedTasks);
+    setEditingTask(null);
+  }
+
   const filteredTasks = taskList.filter((task) => {
     return (
       (!selectedStatus || task.status === selectedStatus) &&
@@ -90,7 +99,11 @@ function App() {
         onSortChange={handleSortChange}
       />
 
-      <TaskForm onAddTask={handleAddTask} editingTask={editingTask} />
+      <TaskForm
+        onAddTask={handleAddTask}
+        editingTask={editingTask}
+        onUpdateTask={handleUpdateTask}
+      />
     </div>
   );
 }
