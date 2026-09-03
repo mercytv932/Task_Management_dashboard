@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { tasks } from "./data/Data";
-import TaskList, { type Task, type TaskStatus } from "./components/TaskList";
+import TaskList from "./components/TaskList";
+import type { Task, TaskStatus } from "./types";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
 function App() {
