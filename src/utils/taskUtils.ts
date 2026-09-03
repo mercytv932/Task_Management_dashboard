@@ -32,3 +32,19 @@ export function sortTasks(tasks: Task[], sortBy: string) {
   }
   return sortedTasks;
 }
+
+export function validateTask(
+  title: string,
+  description: string,
+  dueDate: string,
+) {
+  if (title === "") {
+    return "title is empty!";
+  } else if (description === "") {
+    return "description is empty!";
+  } else if (dueDate === "") {
+    return "due date is required!";
+  }
+
+  return "";
+}

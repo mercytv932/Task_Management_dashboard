@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Task, TaskStatus } from "../types";
+import { validateTask } from "../utils/taskUtils";
 interface TaskFormProps {
   onAddTask: (newTask: Task) => void;
   editingTask: Task | null;
@@ -27,16 +28,12 @@ function TaskForm({ onAddTask, editingTask, onUpdateTask }: TaskFormProps) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (title === "") {
-      setError("title is empty!");
-      return;
-    } else if (description === "") {
-      setError("description is empty!");
-      return;
-    } else if (dueDate === "") {
-      setError("due date is required!");
+    const validationError = validateTask(title, description, dueDate);
+    if (validationError) {
+      setError(validationError);
       return;
     }
+
     setError("");
     if (editingTask) {
       const updatedTask: Task = {
