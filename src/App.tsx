@@ -7,6 +7,8 @@ import type { Task, TaskStatus } from "./types";
 import TaskFilter from "./components/TaskFilter";
 import TaskForm from "./components/TaskForm";
 import Dashboard from "./components/Dashboard";
+import "./App.css";
+
 function App() {
   const [taskList, setTaskList] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem("tasks");
@@ -115,7 +117,7 @@ function App() {
 
   const sortedTasks = sortTasks(filteredTasks, sortBy);
   return (
-    <div>
+    <div className="App">
       <Dashboard tasks={taskList} />
       <div>
         <p>Active Filters:</p>
