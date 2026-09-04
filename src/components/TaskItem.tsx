@@ -1,7 +1,14 @@
 import type { TaskItemProps, TaskStatus } from "../types";
 import { formatDate } from "../utils/taskUtils";
 
-function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
+function TaskItem({
+  task,
+  onStatusChange,
+  onDelete,
+  onEdit,
+  onMoveUp,
+  onMOveDown,
+}: TaskItemProps) {
   function handleDelete() {
     onDelete(task.id);
   }
@@ -14,6 +21,13 @@ function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
 
   function handleEdit() {
     onEdit(task);
+  }
+  function handleMoveUp() {
+    onMoveUp(task.id);
+  }
+
+  function handleMoveDown() {
+    onMOveDown(task.id);
   }
   return (
     <div className="task-card">
@@ -38,6 +52,13 @@ function TaskItem({ task, onStatusChange, onDelete, onEdit }: TaskItemProps) {
           <option value="in-progress">In-Progress</option>
           <option value="completed">Completed</option>
         </select>
+        <button className="move-button" onClick={handleMoveUp}>
+          ⌃
+        </button>
+        <button className="move-button" onClick={handleMoveDown}>
+          {" "}
+          ⌄
+        </button>
 
         <button className="edit-button" onClick={handleEdit}>
           Edit

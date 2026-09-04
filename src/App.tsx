@@ -116,6 +116,38 @@ function App() {
   );
 
   const sortedTasks = sortTasks(filteredTasks, sortBy);
+
+  function handleMoveUp(taskId: string) {
+    const index = taskList.findIndex((task) => task.id === taskId);
+
+    if (index <= 0) {
+      return;
+    }
+
+    const updatedTasks = [...taskList];
+
+    [updatedTasks[index - 1], updatedTasks[index]] = [
+      updatedTasks[index],
+      updatedTasks[index - 1],
+    ];
+    setTaskList(updatedTasks);
+  }
+
+  function handleMoveDown(taskId: string) {
+    const index = taskList.findIndex((task) => task.id === taskId);
+    if (index === -1 || index >= taskList.length - 1) {
+      return;
+    }
+
+    const updatedTasks = [...taskList];
+
+    [updatedTasks[index], updatedTasks[index + 1]] = [
+      updatedTasks[index + 1],
+      updatedTasks[index],
+    ];
+    setTaskList(updatedTasks);
+  }
+
   return (
     <div className="app">
       <Dashboard tasks={taskList} />
@@ -141,6 +173,8 @@ function App() {
         onDelete={handleDeleteBtn}
         onStatusChange={handleStatusChange}
         onEdit={handleEditingTask}
+        onMoveUp={handleMoveUp}
+        onMOveDown={handleMoveDown}
       />
 
       <TaskForm

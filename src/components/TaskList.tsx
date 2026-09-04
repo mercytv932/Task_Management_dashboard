@@ -2,7 +2,14 @@ import type { TaskListProps } from "../types";
 
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, onStatusChange, onDelete, onEdit }: TaskListProps) {
+function TaskList({
+  tasks,
+  onStatusChange,
+  onDelete,
+  onEdit,
+  onMoveUp,
+  onMOveDown,
+}: TaskListProps) {
   return (
     <div className="task-list">
       <h2 className="task-list-title">Tasks</h2>
@@ -15,6 +22,8 @@ function TaskList({ tasks, onStatusChange, onDelete, onEdit }: TaskListProps) {
             onStatusChange={onStatusChange}
             onDelete={onDelete}
             onEdit={onEdit}
+            onMoveUp={onMoveUp}
+            onMOveDown={onMOveDown}
           />
         ))}
       </div>

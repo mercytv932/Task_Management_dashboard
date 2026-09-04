@@ -7,6 +7,8 @@ export interface TaskListProps {
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
   onEdit: (task: Task) => void;
+  onMoveUp: (taskId: string) => void;
+  onMOveDown: (taskId: string) => void;
 }
 
 export interface TaskItemProps {
@@ -14,6 +16,8 @@ export interface TaskItemProps {
   onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
   onEdit: (task: Task) => void;
+  onMoveUp: (taskId: string) => void;
+  onMOveDown: (taskId: string) => void;
 }
 
 export interface TaskFormProps {
