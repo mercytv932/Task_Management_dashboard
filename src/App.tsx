@@ -24,6 +24,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
@@ -148,9 +150,16 @@ function App() {
     setTaskList(updatedTasks);
   }
 
+  function handleThemeChange() {
+    setDarkMode(!darkMode);
+  }
+
   return (
-    <div className="app">
+    <div className={darkMode ? "app dark-mode" : "app"}>
       <Dashboard tasks={taskList} />
+      <button className="theme-button" onClick={handleThemeChange}>
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
 
       <div className="active-filters">
         <p>Active Filters:</p>
