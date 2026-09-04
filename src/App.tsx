@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { filterTasks, sortTasks } from "./utils/taskUtils";
-import { tasks } from "./data/Data";
 import type { TaskPriority } from "./types";
 import TaskList from "./components/TaskList";
 import type { Task, TaskStatus } from "./types";
@@ -17,7 +16,7 @@ function App() {
       return JSON.parse(savedTasks);
     }
 
-    return tasks;
+    return [];
   });
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
   const [selectedPriority, setSelectedPriority] = useState<TaskPriority>();
