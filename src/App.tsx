@@ -164,7 +164,7 @@ function App() {
     <div className={darkMode ? "app dark-mode" : "app"}>
       <Dashboard tasks={taskList} />
       <button className="theme-button" onClick={handleThemeChange}>
-        {darkMode ? "Light Mode" : "Dark Mode"}
+        {darkMode ? " ☀️ Light Mode" : " 🌙 Dark Mode"}
       </button>
 
       <div className="active-filters">

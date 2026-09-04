@@ -361,6 +361,35 @@ textarea.form-input {
 }
 
 /* Dark Mode */
+
+.theme-button {
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #1f2937;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.theme-button:hover {
+  background: #374151;
+  transform: translateY(-2px);
+}
+
+.dark-mode .theme-button {
+  background: #f9fafb;
+  color: #111827;
+}
+
+.dark-mode .theme-button:hover {
+  background: #e5e7eb;
+}
+
 .dark-mode {
   background: #111827;
   color: #f9fafb;
