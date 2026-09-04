@@ -359,3 +359,44 @@ textarea.form-input {
 .move-button:active {
   transform: scale(0.92);
 }
+
+/* Dark Mode */
+.dark-mode {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.dark-mode .dashboard-title,
+.dark-mode .task-list-title,
+.dark-mode .filter-title,
+.dark-mode .form-title {
+  color: #f9fafb;
+}
+
+.dark-mode .stat-card,
+.dark-mode .task-filter,
+.dark-mode .task-card,
+.dark-mode .task-form,
+.dark-mode .file-actions {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+.dark-mode .stat-card h3,
+.dark-mode .task-title {
+  color: #f9fafb;
+}
+
+.dark-mode .stat-card p,
+.dark-mode .task-description {
+  color: #d1d5db;
+}
+
+.dark-mode .search-input,
+.dark-mode .filter-select,
+.dark-mode .form-input,
+.dark-mode .status-select {
+  background: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}

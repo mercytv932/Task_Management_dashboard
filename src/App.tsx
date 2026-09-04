@@ -24,11 +24,17 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [editingTask, setEditingTask] = useState<Task | null>(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", String(darkMode));
+  }, [darkMode]);
 
   function handleSearchChange(searchValue: string) {
     setSearch(searchValue);
